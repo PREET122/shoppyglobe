@@ -61,7 +61,6 @@ npm run lint
 
 ## GitHub Repository
 
-Add your published GitHub repository link here after pushing the project:
+Published repository:
 
-`https://github.com/<your-username>/shoppyglobe`
-
+`https://github.com/PREET122/shoppyglobe`
