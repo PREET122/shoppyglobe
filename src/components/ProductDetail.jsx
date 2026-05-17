@@ -3,8 +3,11 @@ import { useDispatch } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { addToCart } from '../features/cart/cartSlice'
 import { formatCurrency } from '../utils/currency'
+import { adaptProduct } from '../utils/productAdapter'
 import LazyImage from './LazyImage'
 import PageLoader from './PageLoader'
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
 function ProductDetail() {
   const dispatch = useDispatch()
@@ -21,17 +24,16 @@ function ProductDetail() {
       setError('')
 
       try {
-        const response = await fetch(
-          `https://dummyjson.com/products/${productId}`,
-          { signal: controller.signal },
-        )
+        const response = await fetch(`${API_BASE_URL}/products/${productId}`, {
+          signal: controller.signal,
+        })
 
         if (!response.ok) {
           throw new Error(`Unable to load product ${productId} (${response.status})`)
         }
 
         const data = await response.json()
-        setProduct(data)
+        setProduct(adaptProduct(data))
       } catch (fetchError) {
         if (fetchError.name !== 'AbortError') {
           setError(fetchError.message || 'Unable to fetch this product right now.')

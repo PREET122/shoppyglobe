@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { adaptProduct } from '../utils/productAdapter'
 
-const PRODUCTS_API_URL = 'https://dummyjson.com/products'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
+const PRODUCTS_API_URL = `${API_BASE_URL}/products`
 
 export function useProducts() {
   const [products, setProducts] = useState([])
@@ -25,7 +27,8 @@ export function useProducts() {
         }
 
         const data = await response.json()
-        setProducts(data.products ?? [])
+        const incomingProducts = Array.isArray(data) ? data : data.products ?? []
+        setProducts(incomingProducts.map(adaptProduct))
       } catch (fetchError) {
         if (fetchError.name !== 'AbortError') {
           setError(fetchError.message || 'Something went wrong while loading.')

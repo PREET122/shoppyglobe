@@ -16,9 +16,9 @@ function HomePage() {
           <p className="eyebrow">ShoppyGlobe E-commerce</p>
           <h1>Discover clean tech, home upgrades, and everyday essentials.</h1>
           <p>
-            This storefront fetches live products from DummyJSON, filters them
-            through Redux search state, and keeps checkout simple for your
-            assignment workflow.
+            This storefront now fetches live products from your Express and
+            MongoDB backend, filters them through Redux search state, and keeps
+            checkout simple for your assignment workflow.
           </p>
           <div className="hero-banner__actions">
             <Link className="primary-button" to="/checkout">

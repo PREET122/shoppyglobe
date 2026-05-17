@@ -51,12 +51,12 @@ function ProductItem({ product, onAddToCart }) {
 
 ProductItem.propTypes = {
   product: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    discountPercentage: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
+    discountPercentage: PropTypes.number,
+    rating: PropTypes.number,
     brand: PropTypes.string,
     category: PropTypes.string.isRequired,
     thumbnail: PropTypes.string,
